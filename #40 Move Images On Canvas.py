@@ -14,7 +14,7 @@ y = h//2
 canvas = Canvas(root,width=w,height=h,bg="white")
 canvas.pack(pady=10)
 
-img = PhotoImage(file="melon.png")
+img = PhotoImage(file="img/melon.png.png")
 
 my_img = canvas.create_image(0,0,anchor=NW,image=img)
 
