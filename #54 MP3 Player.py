@@ -53,8 +53,10 @@ def play():
 
 def stop():
     global paused
+    song_box.selection_clear(0,END)
     pygame.mixer.music.stop()
-    song_box.select_clear(ACTIVE)
+
+    status_bar.config(text="")
 
     paused = True
 
@@ -124,11 +126,21 @@ def play_time():
 
     converted_time = time.strftime("%M:%S",time.gmtime(current_time))
 
-    
+    # cur_song = song_box.curselection()
+    song = song_dict[song_box.get(ACTIVE)]
 
-    status_bar.config(text=converted_time)
+    song_mut = MP3(song)
+    song_len = song_mut.info.length
 
-    status_bar.after(1000,play_time)
+    converted_total_time = time.strftime("%M:%S",time.gmtime(song_len))
+    print(current_time,song_len)
+    if current_time == -0.001:
+        status_bar.config(text="")
+    elif current_time < song_len:
+        status_bar.config(text=f"{converted_time} of {converted_total_time}")
+        status_bar.after(1000,play_time)
+    else:
+        status_bar.config(text="")
 
 # Initialize Pygame Mixer
 pygame.mixer.init()
@@ -180,7 +192,7 @@ main_menu.add_cascade(label="Add Songs",menu=add_song_menu)
 main_menu.add_cascade(label="Delete Songs",menu=delete_song_menu)
 
 # Create Status Bar
-status_bar = Label(root,text="HI",font=("Calibri",15),anchor=E,relief=SUNKEN,bd=1)
+status_bar = Label(root,text="",font=("Calibri",15),anchor=E,relief=SUNKEN,bd=1)
 status_bar.pack(fill=X,side=BOTTOM,ipady=2)
 
 root.mainloop()
