@@ -2,8 +2,8 @@ from tkinter import *
 from random import choice, shuffle
 
 root = Tk()
-root.title("Python")
-root.iconbitmap("computer.ico")
+root.title("Word Jumble Game")
+root.iconbitmap("img/word.ico")
 root.geometry("600x400")
 
 states = ["Andhra Pradesh","Arunachal Pradesh ","Assam","Bihar","Chhattisgarh","Goa","Gujarat","Haryana","Himachal Pradesh","Jammu and Kashmir","Jharkhand","Karnataka","Kerala","Madhya Pradesh","Maharashtra","Manipur","Meghalaya","Mizoram","Nagaland","Odisha","Punjab","Rajasthan","Sikkim","Tamil Nadu","Telangana","Tripura","Uttar Pradesh","Uttarakhand","West Bengal","Andaman and Nicobar Islands","Chandigarh","Dadra and Nagar Haveli","Daman and Diu","Lakshadweep","National Capital Territory of Delhi","Puducherry"]
@@ -47,7 +47,7 @@ def submit():
         result_label.config(text="Wrong!")
         color = "red"
     
-    result_label.config(text=f"{result_label.cget('text')}. Correct Answer was {correct_ans}.",fg=color)
+    result_label.config(text=f"{result_label.cget('text')} Correct Answer was {correct_ans}.",fg=color)
     
     answer_box.delete(0,END)
     root.after(3000,shuffle_states)
