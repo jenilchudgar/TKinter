@@ -8,13 +8,14 @@ import time
 root = Tk()
 root.title("MP3 Player")
 root.iconbitmap("computer.ico")
-root.geometry("520x400")
+root.geometry("520x460")
 
 # Create Song Dictorinary
-global song_dict,paused
+global song_dict,paused,is_mute
 
 song_dict = {}
 paused = False
+is_mute = False
 
 # Functions
 def add_song():
@@ -169,6 +170,24 @@ def volume(x):
         img = PhotoImage(file=r"img\player\vol4.png")
         volume_metre.config(image=img)
 
+def mute():
+    
+    global img,is_mute
+
+    is_mute = not is_mute
+    
+    if is_mute:
+        img = PhotoImage(file=r"img\player\vol0.png")
+        pygame.mixer.music.set_volume(0)
+        volume_metre.config(image=img)
+        volume_slider.config(value=0)
+
+    else:
+        img = PhotoImage(file=r"img\player\vol4.png")
+        pygame.mixer.music.set_volume(1)
+        volume_metre.config(image=img)
+        volume_slider.config(value=1)
+
 # Initialize Pygame Mixer
 pygame.mixer.init()
 
@@ -190,6 +209,18 @@ volume_slider.pack(pady=10)
 # Volume Metre
 volume_metre = Label(master_frame)
 volume_metre.grid(row=1,column=1,pady=20)
+
+# Mute Button
+mute_img = PhotoImage(file="img/player/mute.png")
+
+mute_btn = Button(master_frame,command=mute,image=mute_img)
+mute_btn.grid(row=2,column=1)
+
+# Exit Button
+exit_img = PhotoImage(file="img/player/exit.png")
+
+exit_btn = Button(master_frame,image=exit_img,command=root.destroy)
+exit_btn.grid(row=2,column=0)
 
 # Define Player Control Images
 back_img = PhotoImage(file="img/player/back.png")
@@ -229,8 +260,13 @@ delete_song_menu = Menu(main_menu)
 delete_song_menu.add_command(label="Delete a Song",command=delete)
 delete_song_menu.add_command(label="Delete all Songs",command=delete_all)
 
+# Create Exit Menu
+exit_song_menu = Menu(main_menu)
+exit_song_menu.add_command(label="Exit",command=root.destroy)
+
 main_menu.add_cascade(label="Add Songs",menu=add_song_menu)
 main_menu.add_cascade(label="Delete Songs",menu=delete_song_menu)
+main_menu.add_cascade(label="Exit",menu=exit_song_menu)
 
 # Create Status Bar
 status_bar = Label(root,text="",font=("Calibri",15),anchor=E,relief=SUNKEN,bd=1)
