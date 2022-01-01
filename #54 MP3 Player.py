@@ -1,13 +1,14 @@
 from tkinter import filedialog
 from mutagen.mp3 import MP3
 from tkinter import *
+import tkinter.ttk as ttk
 import pygame
 import time
 
 root = Tk()
 root.title("MP3 Player")
 root.iconbitmap("computer.ico")
-root.geometry("500x400")
+root.geometry("520x400")
 
 # Create Song Dictorinary
 global song_dict,paused
@@ -133,22 +134,62 @@ def play_time():
     song_len = song_mut.info.length
 
     converted_total_time = time.strftime("%M:%S",time.gmtime(song_len))
-    print(current_time,song_len)
+
     if current_time == -0.001:
         status_bar.config(text="")
     elif current_time < song_len:
         status_bar.config(text=f"{converted_time} of {converted_total_time}")
         status_bar.after(1000,play_time)
+
+def volume(x):
+    pygame.mixer.music.set_volume(volume_slider.get())
+    
+    v = int(volume_slider.get() * 100)
+
+    global img
+    img = PhotoImage(file=r"img\player\vol0.png")
+
+    if (v == 0):
+        img = PhotoImage(file=r"img\player\vol0.png")
+        volume_metre.config(image=img)
+
+    elif (v > 0) and (v <= 25):
+        img = PhotoImage(file=r"img\player\vol1.png")
+        volume_metre.config(image=img)
+
+    elif (v > 25) and (v <= 50):
+        img = PhotoImage(file=r"img\player\vol2.png")
+        volume_metre.config(image=img)
+
+    elif (v > 50) and (v <= 75):
+        img = PhotoImage(file=r"img\player\vol3.png")
+        volume_metre.config(image=img)
+
     else:
-        status_bar.config(text="")
+        img = PhotoImage(file=r"img\player\vol4.png")
+        volume_metre.config(image=img)
 
 # Initialize Pygame Mixer
 pygame.mixer.init()
 
-# Create Playlist Box
-song_box = Listbox(root,bg="black",fg="yellow",width=50,font=('Calibri',12),selectbackground="silver",selectforeground="blue")
-song_box.pack(pady=20)
+# Master Frame
+master_frame = Frame(root)
+master_frame.pack(pady=20)
 
+# Create Playlist Box
+song_box = Listbox(master_frame,bg="black",fg="yellow",width=50,font=('Calibri',12),selectbackground="silver",selectforeground="blue")
+song_box.grid(row=0,column=0)
+
+# Create Volume Slider Label Frame
+volume_frame = LabelFrame(master_frame,text="Volume")
+volume_frame.grid(row=0,column=1,padx=10)
+
+volume_slider = ttk.Scale(volume_frame,from_=1,to=0,orient=VERTICAL,command=volume,length=120,value=1)
+volume_slider.pack(pady=10)
+
+# Volume Metre
+volume_metre = Label(master_frame)
+volume_metre.grid(row=1,column=1,pady=20)
 
 # Define Player Control Images
 back_img = PhotoImage(file="img/player/back.png")
@@ -158,8 +199,8 @@ pause_img = PhotoImage(file="img/player/pause.png")
 stop_img = PhotoImage(file="img/player/stop.png")
 
 # Create Player Control Frame
-control_frame = Frame(root)
-control_frame.pack()
+control_frame = Frame(master_frame)
+control_frame.grid(row=1,column=0,pady=20)
 
 # Create Player Control Buttons
 back_btn = Button(control_frame,image=back_img,borderwidth=0,command=back)
