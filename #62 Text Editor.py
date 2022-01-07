@@ -189,6 +189,34 @@ def print_file(e=None):
 def select_all(e=None):
     text_box.tag_add("sel","1.0",END)
 
+def night_mode(e=None):
+    if is_night_mode.get():
+        MAIN_COLOR = "black"
+        SECOND_COLOR = "#373737"
+        TEXT_COLOR = "white"
+
+        root.config(bg=MAIN_COLOR)
+        status_bar.config(bg=MAIN_COLOR,fg=TEXT_COLOR)
+        text_box.config(bg=SECOND_COLOR,fg=TEXT_COLOR)
+
+        file_menu.config(bg=SECOND_COLOR,fg=TEXT_COLOR)
+        edit_menu.config(bg=SECOND_COLOR,fg=TEXT_COLOR)
+        options_menu.config(bg=SECOND_COLOR,fg=TEXT_COLOR)
+        text_styles_menu.config(bg=SECOND_COLOR,fg=TEXT_COLOR)
+    else:
+        MAIN_COLOR = "SystemButtonFace"
+        SECOND_COLOR = "SystemButtonFace"
+        TEXT_COLOR = "black"
+
+        root.config(bg=MAIN_COLOR)
+        status_bar.config(bg=MAIN_COLOR,fg=TEXT_COLOR)
+        text_box.config(bg="white",fg=TEXT_COLOR)
+
+        file_menu.config(bg=SECOND_COLOR,fg=TEXT_COLOR)
+        edit_menu.config(bg=SECOND_COLOR,fg=TEXT_COLOR)
+        options_menu.config(bg=SECOND_COLOR,fg=TEXT_COLOR)
+        text_styles_menu.config(bg=SECOND_COLOR,fg=TEXT_COLOR)
+
 # Create Main Frame
 main_frame = Frame(root)
 main_frame.pack(pady=5)
@@ -237,6 +265,13 @@ options_menu.add_separator()
 
 options_menu.add_command(label="Select All",command=select_all,accelerator="Ctrl+A")
 options_menu.add_command(label="Clear All",command=lambda e=None: text_box.delete(1.0,END),accelerator="Ctrl+Shift+C")
+
+options_menu.add_separator()
+
+is_night_mode = BooleanVar()
+is_night_mode.set(False)
+
+options_menu.add_checkbutton(label="Night Mode", onvalue=1, offvalue=0, variable=is_night_mode,command=night_mode)
 
 # Add Text Styles
 text_styles_menu = Menu(menu,tearoff=False)
