@@ -276,7 +276,7 @@ options_menu.add_checkbutton(label="Night Mode", onvalue=1, offvalue=0, variable
 # Add Text Styles
 text_styles_menu = Menu(menu,tearoff=False)
 text_styles_menu.add_command(label="Bold",command=text_styles_bold,accelerator="Ctrl+B")
-text_styles_menu.add_command(label="Italics",command=text_styles_italics,accelerator="Ctrl+I")
+text_styles_menu.add_command(label="Italics",command=text_styles_italics)
 
 text_styles_menu.add_separator()
 
