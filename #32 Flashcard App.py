@@ -4,7 +4,7 @@ from PIL import ImageTk,Image
 import os
 
 root = Tk()
-root.title("Geography Flashcard App")
+root.title("Flashcard App")
 root.iconbitmap("computer.ico")
 root.geometry("500x600")
 states = [e.replace(".png","") for e in os.listdir("states")]
@@ -156,13 +156,14 @@ def answer_math():
         .replace("x","*")
         .replace("÷","/")
     )
-
+    # print(answer)
     # global answer_field
     # print(answer)
     if float(answer_field.get()) == float(answer):
         ans = Label(addition_frame,text="Correct! Your answer is right",font=('Calibri',20),fg="blue")
     else:
         ans = Label(addition_frame,text=f"Wrong! Correct Answer: {answer}",font=('Calibri',20),fg="red")
+    ans.pack(pady=(10,0))
     ans.after(2000,add)
 
 def hideAllFrames():
