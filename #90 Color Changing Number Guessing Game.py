@@ -1,4 +1,3 @@
-from curses.ascii import isdigit
 from tkinter import *
 from random import randint
 
