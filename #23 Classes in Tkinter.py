@@ -2,7 +2,7 @@ from tkinter import *
 
 root = Tk()
 root.title("Python")
-root.iconbitmap("C:\\Users\\sanja\\Desktop\\Extra\\Dowloads Folder\\computer.ico")
+root.iconbitmap("computer.ico")
 root.geometry("400x400")
 
 class Jenil:

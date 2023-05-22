@@ -3,7 +3,7 @@ from tkinter import *
 
 root = Tk()
 root.title("Python")
-root.iconbitmap("C:\\Users\\sanja\\Desktop\\Extra\\Dowloads Folder\\computer.ico")
+root.iconbitmap("computer.ico")
 root.geometry("280x400")
 
 #--Databases--
@@ -130,7 +130,7 @@ def update():
     
     editor = Tk()
     editor.title("Update A Record")
-    editor.iconbitmap("C:\\Users\\sanja\\Desktop\\Extra\\Dowloads Folder\\computer.ico")
+    editor.iconbitmap("computer.ico")
     editor.geometry("280x250")
     
     fName_label_editor = Label(editor,text="First Name: ").grid(row=1,column=0,pady=(20,0))

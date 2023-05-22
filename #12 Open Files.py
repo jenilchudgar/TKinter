@@ -4,7 +4,7 @@ from tkinter import filedialog
 
 root = Tk()
 root.title("TKinter in Python: Open Files")
-root.iconbitmap("C:\\Users\\sanja\\Desktop\\Extra\\Dowloads Folder\\computer.ico")
+root.iconbitmap("computer.ico")
 
 def openFile():
     global l,img

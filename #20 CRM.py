@@ -5,7 +5,7 @@ from tkinter import ttk
 global g
 root = Tk()
 root.title("CRM")
-root.iconbitmap("C:\\Users\\sanja\\Desktop\\Extra\\Dowloads Folder\\computer.ico")
+root.iconbitmap("computer.ico")
 root.geometry("720x500")
 
 def add():
@@ -22,7 +22,7 @@ def search():
     global fName_box,lName_box,add_box,state_box,country_box,pin_box,paymentMethod_box,discountCode_box,phone_box,email_box,amountpaid_box
     searchCus = Tk()
     searchCus.title("Search Customers")
-    searchCus.iconbitmap("C:\\Users\\sanja\\Desktop\\Extra\\Dowloads Folder\\computer.ico")
+    searchCus.iconbitmap("computer.ico")
     searchCus.geometry("600x400")
 
     dropDown = ttk.Combobox(searchCus,value=["Search By","First Name","Email","ID"],font=('Calibri',15))
@@ -213,7 +213,7 @@ def show():
     global showCus
     showCus = Tk()
     showCus.title("All Customers")
-    showCus.iconbitmap("C:\\Users\\sanja\\Desktop\\Extra\\Dowloads Folder\\computer.ico")
+    showCus.iconbitmap("computer.ico")
     showCus.geometry("600x500")
 
     curr.execute("SELECT * FROM customers")

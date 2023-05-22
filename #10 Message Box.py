@@ -4,7 +4,7 @@ from PIL import Image,ImageTk
 
 root = Tk()
 root.title("TKinter in Python: Message Box")
-root.iconbitmap("C:\\Users\\sanja\\Desktop\\Extra\\Dowloads Folder\\computer.ico")
+root.iconbitmap("computer.ico")
 
 def click():
     # messagebox.showinfo("Message Box","Hello User!")

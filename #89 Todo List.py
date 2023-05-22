@@ -7,7 +7,7 @@ from tkinter.messagebox import showinfo
 root = Tk()
 root.title("To-Do List")
 root.iconbitmap("computer.ico")
-root.geometry("500x500")
+root.geometry("500x400")
 
 # Functions: Buttons
 def add_item():

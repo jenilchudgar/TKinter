@@ -3,7 +3,7 @@ from PIL import Image,ImageTk
 
 root = Tk()
 root.title("TKinter in Python: New Window")
-root.iconbitmap("C:\\Users\\sanja\\Desktop\\Extra\\Dowloads Folder\\computer.ico")
+root.iconbitmap("computer.ico")
 
 def openWin2():
     global img

@@ -1,15 +1,14 @@
 from tkinter import *
-from PIL import Image,ImageTk
 
 root = Tk()
 root.title("Python")
-root.iconbitmap("C:\\Users\\sanja\\Desktop\\Extra\\Dowloads Folder\\computer.ico")
+root.iconbitmap("computer.ico")
 root.geometry("400x400")
 
 # verticalSlider = Scale(root,from_=0,to=100)
 # verticalSlider.pack()
 
-def s(event):
+def s(e):
     global horizontalSlider
     l.configure(text=horizontalSlider.get())
     l.pack()

@@ -13,7 +13,7 @@ cur_time = now.strftime("%I:%M:%S %p")
 root = Tk()
 root.title("Python")
 root.iconbitmap("computer.ico")
-root.geometry("550x210")
+root.geometry("650x210")
 root.config(bg="black")
 
 global previous
@@ -38,7 +38,7 @@ bitcoin_label = Label(frame,text="TEST LOL",
 bitcoin_label.grid(row=0,column=1,padx=20,sticky=S)
 
 # Latest Price -> Up/Down
-latest_price = Label(frame,text="TEST UP/Down",
+latest_price = Label(frame,text="Unchanged",
                      font=("ComicSansMS",10),
                     bg="black",
                     fg="Grey",
@@ -79,17 +79,31 @@ def Update():
     price2 = price2.replace(",","")
     print(price2)
     
+    current = float(price1) * float(price2)
+
     # Update Label
-    bitcoin_label.config(text=f"₹ {float(price1) * float(price2)}")
-
-
-    # Set Timmer to 1/2 minute
-    root.after(1000*30,Update)
+    bitcoin_label.config(text=f"₹ {round(float(current),3)}")
 
     # Get Time
     global cur_time,now
     now = datetime.now()
     cur_time = now.strftime("%I:%M:%S %p")
+    status_bar.config(text=f"Last Updated {cur_time}")
+
+    if previous:
+        if float(previous) > float(current):
+            latest_price.config(text=f"Price Down {round(float(previous)-float(current),2)}",fg="red")
+        elif float(previous) < float(current):
+            latest_price.config(text=f"Price Up {round(float(current)-float(previous),2)}",fg="green")
+        elif float(previous) == float(current):
+            latest_price.config(text="Price Unchanged",fg="grey")
+        else:
+            previous = current 
+            latest_price.config(text="Price Unchanged",fg="grey")
+
+    # Set Timmer to 1/2 minute
+    root.after(1000*30,Update)
+
 
 # Create Status Bar
 status_bar = Label(root,text=f"Last Updated {cur_time}",bd=0,anchor=E,bg="black",fg="grey")
