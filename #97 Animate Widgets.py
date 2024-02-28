@@ -44,9 +44,6 @@ def contract():
 
         root.after(10,contract)
 
-    
-
-
 # Create a Button
 btn = Button(root,text="Click Me!",command=expand,font=("Calibri",16))
 btn.pack(pady=150)

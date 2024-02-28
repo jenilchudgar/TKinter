@@ -251,7 +251,6 @@ edit_menu.add_command(label="Cut",command=edit_cut,accelerator="Ctrl+X")
 edit_menu.add_command(label="Copy",command=edit_copy,accelerator="Ctrl+C")
 edit_menu.add_command(label="Paste",command=edit_paste,accelerator="Ctrl+V")
 
-
 # Add Options Menu
 horizontal_scroll_bar = BooleanVar()
 horizontal_scroll_bar.set(False)
