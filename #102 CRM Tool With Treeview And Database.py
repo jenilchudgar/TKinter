@@ -7,6 +7,20 @@ root.title("CRM Tool With Treeview And Database")
 root.iconbitmap("data.ico")
 root.geometry("1000x600")
 
+def confirm_exit():
+    result = messagebox.askyesno("Confirm Exit","Are you sure you want to exit the program?")
+
+    try:
+        conn.commit()
+        c.close()
+    except:
+        pass
+
+    if result:
+        root.destroy()
+
+root.protocol("WM_DELETE_WINDOW",confirm_exit)
+
 # Columns
 columns = ("ID","Name","Order Number","Cost of Order (INR ₹)","Address","City","State","Pincode")
 extra = ("name","order_no","cost","address","city","state","pincode")
