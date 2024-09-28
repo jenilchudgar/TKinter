@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import ttk,messagebox,colorchooser
 import sqlite3
+from sys import exit
 
 root = Tk()
 root.title("CRM Tool With Treeview And Database")
@@ -370,11 +371,21 @@ for i,item in enumerate(btn_list):
 
 querry_database()
 
-with open("color.dat","r") as f:
-    p,h = f.read().split("\n")
-    if p and h:
-        change_primary(p)
-        change_highlight(h)
+try:
+    with open("color.dat","r") as f:
+        p,h = f.read().split("\n")
+        if p and h:
+            change_primary(p)
+            change_highlight(h)
+except:
+    with open("color.dat","w") as file:
+        file.write(f"{primary_color}\n{highlight_color}")
+
+    with open("color.dat","r") as f:
+        p,h = f.read().split("\n")
+        if p and h:
+            change_primary(p)
+            change_highlight(h)
 
 # Commit Changes
 conn.commit()
