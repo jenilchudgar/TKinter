@@ -7,6 +7,7 @@ root = Tk()
 root.title("CRM Tool With Treeview And Database")
 root.iconbitmap("data.ico")
 root.geometry("1000x600")
+root.resizable(0,0)
 
 def confirm_exit():
     result = messagebox.askyesno("Confirm Exit","Are you sure you want to exit the program?")
